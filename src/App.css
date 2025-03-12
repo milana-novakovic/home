@@ -7,6 +7,16 @@
   text-align: center;
 }
 
+/* Hide the burger button by default */
+.burger {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+  }
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -94,6 +104,18 @@ body {
 .navbar a.active {
     color: #e317d5;
 }
+
+.home-scroll-container {
+    position: fixed;
+    top: 120px;     /* Adjust this value to your header height */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto; /* Enables internal scrolling */
+    padding: 20px;    /* Optional, for internal spacing */
+    background: #1f242d;
+    align-items: center; /* Ensures a consistent background */
+  }
 
 .home {
     position: relative;
@@ -292,3 +314,89 @@ body {
         transform: translateY(0);
     }
 }
+
+@media (max-width: 880px) {
+    .home {
+      flex-direction: column;
+      align-items: center;
+      /* Adjust height to auto so it expands with content */
+      height: auto;
+      padding-top: 20px; /* Adjust padding as needed */
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+
+    .home::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+      }
+    
+    .home-img {
+      margin-top: 20px;  /* Space between content and image */
+      max-width: 220px;
+      /* Optionally center the image */
+      display: flex;
+      /*overflow:visible;*/
+    }
+
+    .home-img img {
+        width: 100%; /* Make the image responsive within its container */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 260px; /* Enforce max width */
+      }
+    
+    .home-content {
+      text-align: center;
+    }
+  }
+
+    /* For screens wider than 720px, keep the normal navbar display */
+    @media (min-width: 721px) {
+        .navbar {
+          display: flex;
+        }
+        .burger {
+          display: none;
+        }
+      }
+
+   /* Responsive styles for screens 720px or below */
+   @media (max-width: 720px) {
+    /* Hide the default navbar by default */
+    .navbar {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px; /* Adjust this value based on header height */
+      left: 0;
+      width: 100%;
+      background: #1f242d;
+      padding: 10px 0;
+      z-index: 90;
+    }
+    
+    .logo {
+        display: none;
+      }
+    
+    /* Show the navbar when open */
+    .navbar.open {
+      display: flex;
+    }
+    
+    /* Adjust spacing for the links when displayed vertically */
+    .navbar a {
+      margin: 10px 0;
+      padding: 10px;
+    }
+    
+    /* Display the burger button */
+    .burger {
+      display: block;
+    }
+
+    .home-content h1 {
+        font-size: 24px;  /* Same size as an h3 */
+        font-weight: 700; /* Adjust as needed */
+  }
+}
+  

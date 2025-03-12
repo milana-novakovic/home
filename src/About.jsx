@@ -1,15 +1,15 @@
 import { SocialIcon } from 'react-social-icons'
 import { useTranslation } from 'react-i18next';
 import Divider from './Divider'
-import './About.css'
+import './App.css'
 
 const About = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div>
-      <section className="about">
-        <div className="about-content">
+    
+      <section className="home">
+        <div className="home-content">
           <h3>{t('About-Nice-To-Meet')}</h3>
           <Divider />
           <p style={{marginTop: "15px"}}>
@@ -29,7 +29,7 @@ const About = () => {
           <a href="https://drive.google.com/file/d/1YtN2lRhIuryV-uu8aGxeCkVjI5CDy048/view?usp=sharing" target="_blank" className="btn">{t('App-CV')}</a>
         </div>
       </section>
-    </div>
+    
   );
 };
 

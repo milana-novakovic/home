@@ -12,31 +12,60 @@ import Contact from './Contact'
 const App = () => {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLanguageChange = (e) => {
     i18n.changeLanguage(e.target.value);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  // When clicking a link, close the burger menu
+  const handleLinkClick = (tab) => {
+    setActiveTab(tab);
+    setMenuOpen(false);
+  };
+
   return (
     <Router>
-    <div>
-      <header className="header">
-        <a href="#" className="logo">Portfolio.</a>
-        <nav className="navbar">
-          <Link style={{ "--i": 1 }} to="/" className={activeTab == '' ? "active" : ''} onClick={() => setActiveTab('')}>{t('Nav-Home')}</Link>
-          <Link style={{ "--i": 2 }} to="/about" className={activeTab == 'about' ? "active" : ''} onClick={() => setActiveTab('about')}>{t('Nav-About')}</Link>
-          <Link style={{ "--i": 3 }} to="/skills" className={activeTab == 'skills' ? "active" : ''} onClick={() => setActiveTab('skills')}>{t('Nav-Skills')}</Link>
-          <Link style={{ "--i": 4 }} to="/portfolio" className={activeTab == 'portfolio' ? "active" : ''} onClick={() => setActiveTab('portfolio')}>Portfolio</Link>
-          <Link style={{ "--i": 5 }} to="/contact" className={activeTab == 'contact' ? "active" : ''} onClick={() => setActiveTab('contact')}>{t('Nav-Contact')}</Link>
-        </nav>
-        <div className="language-switch">
+      <div>
+        <header className="header">
+          <a href="#" className="logo">Portfolio.</a>
+
+          {/* Burger button appears only on small screens */}
+          <button className="burger" onClick={toggleMenu}>
+            &#9776;
+          </button>
+
+          {/* Add "open" class if the menu is toggled */}
+          <nav className={`navbar ${menuOpen ? "open" : ""}`}>
+            <Link style={{ "--i": 1 }} to="/" className={activeTab === '' ? "active" : ''} onClick={() => handleLinkClick('')}>
+              {t('Nav-Home')}
+            </Link>
+            <Link style={{ "--i": 2 }} to="/about" className={activeTab === 'about' ? "active" : ''} onClick={() => handleLinkClick('about')}>
+              {t('Nav-About')}
+            </Link>
+            <Link style={{ "--i": 3 }} to="/skills" className={activeTab === 'skills' ? "active" : ''} onClick={() => handleLinkClick('skills')}>
+              {t('Nav-Skills')}
+            </Link>
+            <Link style={{ "--i": 4 }} to="/portfolio" className={activeTab === 'portfolio' ? "active" : ''} onClick={() => handleLinkClick('portfolio')}>
+              Portfolio
+            </Link>
+            <Link style={{ "--i": 5 }} to="/contact" className={activeTab === 'contact' ? "active" : ''} onClick={() => handleLinkClick('contact')}>
+              {t('Nav-Contact')}
+            </Link>
+          </nav>
+
+          <div className="language-switch">
             <select value={i18n.language} onChange={handleLanguageChange}>
               <option value="de">DE</option>
               <option value="en">EN</option>
             </select>
           </div>
-      </header> 
-    </div>
+        </header>
+      </div>
 
       <Routes>
         <Route path="/" element={<Home />} />

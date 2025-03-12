@@ -293,3 +293,9 @@ body {
         transform: translateY(0);
     }
 }
+
+@media (max-width: 660px) {
+    .youtube-container {
+      flex-direction: column;
+    }
+}

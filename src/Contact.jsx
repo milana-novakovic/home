@@ -1,15 +1,32 @@
 import { SocialIcon } from 'react-social-icons'
 import './App.css'
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
 import profilePicture from './assets/profile_pic3.png'
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 490);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 490);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return(
   <section className="home">
     <div className="home-content">
-      <h1>{t('Contact-Get-In-Touch')}</h1>
+    {isSmallScreen ? (
+        <p></p>
+      ) : (
+        <h1>{t('Contact-Get-In-Touch')}</h1>
+      )}
       <p>
         {t('Contact-Bottom-Text')}
       </p>

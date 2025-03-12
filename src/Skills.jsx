@@ -31,7 +31,7 @@ const Skills = () => {
             <SocialIcon url="mailto:milananovakovic922@gmail.com" />
             <SocialIcon url="https://wa.me/00491621752413" target="_blank" rel="noopener noreferrer" />
           </div>
-          <a href="https://drive.google.com/file/d/1YtN2lRhIuryV-uu8aGxeCkVjI5CDy048/view?usp=sharing" target="_blank" className="btn">Download CV</a>
+          <a href="https://drive.google.com/file/d/1YtN2lRhIuryV-uu8aGxeCkVjI5CDy048/view?usp=sharing" target="_blank" className="btn">{t('App-CV')}</a>
         </div>
       </section>
     </div>
